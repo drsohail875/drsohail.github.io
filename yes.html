@@ -8,23 +8,25 @@
 <style>
 audio{display:none}
 
-/* layout */
+/* ===== LAYOUT ===== */
 .final-wrap{
   display:flex;
   width:100%;
   max-width:1200px;
-  gap:24px;
   align-items:center;
   justify-content:center;
+  gap:20px;
+  overflow:hidden;
 }
 
-/* left content */
+/* LEFT CONTENT */
 .left{
   flex:1;
+  max-width:520px;
   transition:transform .8s ease;
 }
 
-/* jumping heart svg */
+/* HEART SVG */
 svg{
   cursor:pointer;
   animation:jump 1s infinite;
@@ -34,29 +36,59 @@ svg{
   50%{transform:translateY(-12px)}
 }
 
-/* scroll */
-.scroll{
+/* ===== ROYAL SCROLL ===== */
+.scroll-wrap{
   flex:1;
   max-width:420px;
   display:none;
-  background:#f7eed3;
-  border:5px solid #b89b4f;
-  border-radius:18px;
-  padding:20px;
-  transform-origin:top;
-  animation:unroll .8s ease;
+  animation:appear .4s ease;
 }
+
+@keyframes appear{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* scroll body */
+.scroll{
+  background:#f9f1d8;
+  padding:25px 20px;
+  border-left:6px solid #b89b4f;
+  border-right:6px solid #b89b4f;
+  position:relative;
+  animation:unroll .9s ease;
+  transform-origin:top;
+}
+
+/* scroll rolls */
+.scroll::before,
+.scroll::after{
+  content:'';
+  position:absolute;
+  left:-6px;
+  right:-6px;
+  height:26px;
+  background:#e6d3a3;
+  border-radius:50%;
+}
+.scroll::before{
+  top:-22px;
+}
+.scroll::after{
+  bottom:-22px;
+}
+
 @keyframes unroll{
   from{transform:scaleY(0)}
   to{transform:scaleY(1)}
 }
 
-/* candle */
+/* CANDLE */
 .candle{
   width:22px;
   height:45px;
   background:#fff;
-  margin:0 auto 14px;
+  margin:0 auto 15px;
   position:relative;
 }
 .candle::after{
@@ -76,7 +108,7 @@ svg{
   to{opacity:1}
 }
 
-/* form */
+/* FORM */
 .scroll input,.scroll textarea{
   width:100%;
   padding:8px;
@@ -95,7 +127,7 @@ svg{
 <div class="container">
 <div class="final-wrap">
 
-<!-- LEFT SIDE -->
+<!-- LEFT -->
 <div class="left" id="leftSide">
 
 <h1 class="header_text">
@@ -103,14 +135,13 @@ Oye hoye!!! 🥀
 Batao phir kab jaana hai ✨
 
 <svg id="sealHeart" width="60" height="60" viewBox="0 0 100 100"
-     onclick="morphSeal()">
-
-  <path id="shape" fill="#ff4d6d"
-    d="M50 82
-       C20 60,10 45,10 30
-       A20 20 0 0 1 50 30
-       A20 20 0 0 1 90 30
-       C90 45,80 60,50 82Z"/>
+onclick="morphSeal()">
+<path id="shape" fill="#ff4d6d"
+d="M50 82
+   C20 60,10 45,10 30
+   A20 20 0 0 1 50 30
+   A20 20 0 0 1 90 30
+   C90 45,80 60,50 82Z"/>
 </svg>
 </h1>
 
@@ -126,50 +157,43 @@ Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
 </div>
 
 <!-- RIGHT SCROLL -->
-<div class="scroll" id="scroll">
+<div class="scroll-wrap" id="scrollWrap">
+  <div class="scroll">
 
-<div class="candle"></div>
+    <div class="candle"></div>
 
-<form action="https://formsubmit.co/xyz@gmail.com" method="POST">
-<input type="hidden" name="_subject" value="She said YES ❤️">
-<input type="hidden" name="_captcha" value="false">
+    <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="She said YES ❤️">
+      <input type="hidden" name="_captcha" value="false">
 
-<input type="date" name="Date" required><br><br>
-<input type="time" name="Time" required><br><br>
-<input type="text" name="Place" placeholder="Place" required><br><br>
+      <input type="date" name="Date" required><br><br>
+      <input type="time" name="Time" required><br><br>
+      <input type="text" name="Place" placeholder="Place" required><br><br>
 
-<textarea name="Message" rows="4"
-placeholder="Write something for me..."></textarea><br><br>
+      <textarea name="Message" rows="4"
+      placeholder="Write something for me..."></textarea><br><br>
 
-<button class="btn" type="submit">Yes ❤️</button>
-</form>
+      <button class="btn" type="submit">Yes ❤️</button>
+    </form>
 
+  </div>
 </div>
 
 </div>
 </div>
 
 <script>
-let morphed=false;
-
+let done=false;
 function morphSeal(){
-  if(morphed) return;
-  morphed=true;
+  if(done) return;
+  done=true;
 
-  const path=document.getElementById("shape");
+  const p=document.getElementById("shape");
+  p.setAttribute("d","M50 10 A40 40 0 1 1 49.9 10Z");
+  p.setAttribute("fill","#b3001b");
 
-  /* heart → wax seal */
-  path.setAttribute(
-    "d",
-    "M50 10 A40 40 0 1 1 49.9 10Z"
-  );
-  path.setAttribute("fill","#b3001b");
-  document.getElementById("sealHeart").style.animation="none";
-
-  setTimeout(()=>{
-    document.getElementById("scroll").style.display="block";
-    document.getElementById("leftSide").style.transform="translateX(-60px)";
-  },400);
+  document.getElementById("leftSide").style.transform="translateX(-30px)";
+  document.getElementById("scrollWrap").style.display="block";
 }
 </script>
 
