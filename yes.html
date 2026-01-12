@@ -19,26 +19,24 @@ audio{display:none}
   overflow:hidden;
 }
 
-/* LEFT SIDE */
 .left{
   flex:1;
   max-width:520px;
-  transition:transform .7s ease;
+  transition:transform .6s ease;
 }
 
-/* JUMPING HEART */
 .heart{
-  display:inline-block;
   font-size:36px;
   cursor:pointer;
   animation:jump 1s infinite;
+  display:inline-block;
 }
 @keyframes jump{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
 }
 
-/* SCROLL */
+/* IMAGE SCROLL */
 .scroll-wrap{
   flex:1;
   max-width:420px;
@@ -48,6 +46,7 @@ audio{display:none}
 
 .scroll-img{
   width:100%;
+  display:block;
 }
 
 .scroll-content{
@@ -62,9 +61,9 @@ audio{display:none}
 .scroll-content textarea{
   width:100%;
   padding:8px;
+  margin-bottom:10px;
   border-radius:8px;
   border:1px solid #999;
-  margin-bottom:10px;
 }
 </style>
 </head>
@@ -78,7 +77,7 @@ audio{display:none}
 <div class="container">
 <div class="main">
 
-<!-- LEFT -->
+<!-- LEFT CONTENT -->
 <div class="left" id="leftSide">
 
 <h1 class="header_text">
@@ -98,9 +97,9 @@ Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
 
 </div>
 
-<!-- SCROLL -->
+<!-- IMAGE SCROLL -->
 <div class="scroll-wrap" id="scrollWrap">
-  <img src="scroll.png" class="scroll-img">
+  <img src="scroll.png" class="scroll-img" alt="Royal Scroll">
 
   <div class="scroll-content">
     <input type="date">
