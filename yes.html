@@ -136,8 +136,8 @@ form button{
   background-image: url('seal.png'); /* Wax seal image */
   background-size: cover;
   position: absolute;
-  left: 10px; /* Positioned to the left side */
-  top: 70%; /* Positioned near scroll message */
+  left: 20px; /* Positioned to the left side with a gap */
+  top: 80%; /* Positioned near scroll message with a gap */
   transform: translateY(10%);
   display: block;
   opacity: 1;
@@ -246,6 +246,8 @@ Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
 </div>
 
 <script>
+let scatterCount = 0; // Track the number of times the seal has been tapped
+
 function openScroll(){
   document.getElementById("msg1").classList.add("shrink");
   document.getElementById("msg2").classList.add("shrink");
@@ -264,8 +266,11 @@ function openScroll(){
   // Wax Seal stops dancing, and scroll starts
   seal.style.animation = 'none'; // Stops the dancing
 
-  // Create Hearts and Flowers
-  createHeartsAndFlowers();
+  // Limit the scatter effect to 5 times
+  if (scatterCount < 5) {
+    scatterCount++;
+    createHeartsAndFlowers(); // Scatter hearts and flowers
+  }
 
   setTimeout(()=>{
     gif.style.display="none";
