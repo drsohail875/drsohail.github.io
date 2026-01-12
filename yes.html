@@ -158,11 +158,10 @@ form button{
   to{filter:drop-shadow(0 0 18px rgba(255,0,0,1));}
 }
 
-/* HEARTS SCATTERING */
+/* HEARTS SCATTERING (Custom Emojis) */
 .floating-heart {
   position: absolute;
   font-size: 30px;
-  color: pink;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -274,25 +273,27 @@ function openScroll(){
 
   setTimeout(()=>{
     gif.style.display="none";
-    img.style.display="block";
-  },2200);
+    img.style.display="block"; // Scroll PNG appears after 7 seconds
+  }, 7000); // Increased duration by 2 seconds (7 seconds total)
 
   setTimeout(()=>{
     form.style.display="block";
-  },2400);
+  },7400); // Show form after scroll transition
 }
 
 // Function to create Hearts and Flowers
 function createHeartsAndFlowers() {
   // Create 16 hearts scattered randomly
-  for (let i = 0; i < 16; i++) {
+  const hearts = ["💘", "💝", "💖", "❤️‍🔥", "💗", "❤️‍🔥", "💓", "❤️‍🔥", "💞", "❤️‍🔥", "💕", "❤️‍🔥", "❣️", "❤️‍🔥", "❤️‍🔥", "❤️❤️‍🔥", "💘", "💌"];
+  
+  hearts.forEach(heartEmoji => {
     let heart = document.createElement("div");
     heart.classList.add("floating-heart");
-    heart.innerHTML = "💖";  // Heart emoji
+    heart.innerHTML = heartEmoji;  // Heart emoji
     heart.style.left = Math.random() * 100 + "%";
     heart.style.top = Math.random() * 100 + "%";
     document.body.appendChild(heart);
-  }
+  });
 
   // Create 10 flowers scattered randomly (using emoji)
   const flowers = ["🍂", "🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "🍂", "🌹", "🍁"];
