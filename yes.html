@@ -154,8 +154,8 @@ form button{
 }
 
 @keyframes sealGlow {
-  0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.8); }
-  100% { box-shadow: 0 0 30px rgba(255, 0, 0, 1); }
+  from{filter:drop-shadow(0 0 5px rgba(255,0,0,.6));}
+  to{filter:drop-shadow(0 0 18px rgba(255,0,0,1));}
 }
 
 /* CONFETTI EFFECT */
@@ -209,7 +209,7 @@ form button{
 
 <div id="msg1" class="message">
 Oye Hoye!!! 🐣🥀  
- Batao fir kab jaana hai ✨
+🌟Batao fir kab jaana hai ✨
 </div>
 
 <div class="gif_container">
@@ -229,6 +229,9 @@ Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
 
   <div id="scrollBox">
     <img id="scrollImg" src="scroll.png">
+
+    <!-- WAX SEAL -->
+    <img id="seal" src="seal.png" alt="Wax Seal">
 
     <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
       <input type="date" name="date" required>
