@@ -58,6 +58,8 @@ audio{display:none}
 /* scroll gif */
 #scrollGif{
   width:220px;
+  display:block;
+  transition: all 2s ease;
 }
 
 /* scroll image */
@@ -173,7 +175,7 @@ function openScroll(){
   setTimeout(()=>{
     gif.style.display="none";
     img.style.display="block";
-  },2000);
+  },2000);  // Adjust timing if gif is long
 }
 </script>
 
