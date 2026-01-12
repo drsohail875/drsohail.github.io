@@ -136,9 +136,9 @@ form button{
   background-image: url('seal.png'); /* Wax seal image */
   background-size: cover;
   position: absolute;
-  top: 20px;
+  top: 50%; /* Position seal in center */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   display: block;
   opacity: 1;
   animation: sealDance 1.5s infinite, sealGlow 1.5s infinite alternate;
@@ -209,7 +209,7 @@ form button{
 
 <div id="msg1" class="message">
 Oye Hoye!!! 🐣🥀  
-🌟Batao fir kab jaana hai ✨
+Batao fir kab jaana hai ✨
 </div>
 
 <div class="gif_container">
@@ -264,6 +264,9 @@ function openScroll(){
   // Wax Seal stops dancing, and scroll starts
   seal.style.animation = 'none'; // Stops the dancing
 
+  // Confetti & Floating Hearts
+  createConfettiAndHearts();
+
   setTimeout(()=>{
     gif.style.display="none";
     img.style.display="block";
@@ -272,6 +275,28 @@ function openScroll(){
   setTimeout(()=>{
     form.style.display="block";
   },2400);
+}
+
+// Function to create Confetti and Floating Hearts
+function createConfettiAndHearts() {
+  // Create confetti particles
+  for (let i = 0; i < 30; i++) {
+    let confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    document.body.appendChild(confetti);
+  }
+
+  // Create floating hearts
+  for (let i = 0; i < 5; i++) {
+    let heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+  }
 }
 </script>
 
