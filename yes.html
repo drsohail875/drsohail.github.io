@@ -289,7 +289,7 @@ function openScroll(){
 // Function to create Hearts and Flowers
 function createHeartsAndFlowers() {
   // Create 16 hearts scattered randomly
-  const hearts = ["💘", "💝", "💖", "❤️‍🔥", "💗", "❤️‍🔥", "💓", "❤️‍🔥", "💞", "❤️‍🔥", "💕", "❤️‍🔥", "❣️", "❤️‍🔥", "❤️‍🔥", "❤️❤️‍🔥", "💘",];
+  const hearts = ["💘", "💝", "💖", "❤️‍🔥", "💗", "❤️‍🔥", "💓", "❤️‍🔥", "💞", "❤️‍🔥", "💕", "❤️‍🔥", "❣️", "❤️‍🔥", "❤️‍🔥", "❤️‍🔥", "💘",];
   
   hearts.forEach(heartEmoji => {
     let heart = document.createElement("div");
@@ -301,7 +301,7 @@ function createHeartsAndFlowers() {
   });
 
   // Create 10 flowers scattered randomly (using emoji)
-  const flowers = ["🍂", "🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "🍂", "🌹", "🍁"];
+  const flowers = ["🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "", "🌹", "🍁"];
   for (let i = 0; i < 10; i++) {
     let flower = document.createElement("div");
     flower.classList.add("flower");
