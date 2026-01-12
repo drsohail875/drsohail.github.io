@@ -51,19 +51,6 @@ body{
   margin:8px 0;
 }
 
-/* HEART */
-#heart{
-  font-size:30px;
-  cursor:pointer;
-  animation:jump 1s infinite;
-  margin-top:4px;
-}
-
-@keyframes jump{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-}
-
 /* SCROLL */
 #scrollArea{
   display:none;
@@ -116,7 +103,7 @@ form button{
   border:none;
 }
 
-/* CANDLE FLICKER */
+/* CANDLE FLICKER & ROTATE */
 @keyframes flicker {
   0% { opacity: 0.8; }
   50% { opacity: 1; }
@@ -128,12 +115,21 @@ form button{
   height: 50px;
   background-color: #FFB93A;
   border-radius: 10px;
-  margin-top: -20px;
   animation: flicker 1s infinite;
   position: absolute;
-  top: -20px;
+  top: 50%; /* Centering candle */
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: rotateCandle 5s linear infinite, flicker 1s infinite;
 }
 
+@keyframes rotateCandle {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) rotate(90deg); }
+  100% { transform: translate(-50%, -50%) rotate(180deg); }
+}
+
+/* WAX SEAL DANCING AND GLOWING */
 #seal {
   width: 60px;
   height: 60px;
@@ -143,14 +139,18 @@ form button{
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  display: none;
-  opacity: 0;
-  animation: sealAppear 2s forwards, sealGlow 1.5s infinite alternate;
+  display: block;
+  opacity: 1;
+  animation: sealDance 1.5s infinite, sealGlow 1.5s infinite alternate;
+  cursor: pointer; /* Enable clicking */
 }
 
-@keyframes sealAppear {
-  0% { opacity: 0; transform: scale(0.5); }
-  100% { opacity: 1; transform: scale(1); }
+@keyframes sealDance {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  25% { transform: translateX(-50%) rotate(5deg); }
+  50% { transform: translateX(-50%) rotate(-5deg); }
+  75% { transform: translateX(-50%) rotate(5deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
 }
 
 @keyframes sealGlow {
@@ -221,7 +221,8 @@ Mai waha bhi jakar tujhe maang loon...
 Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
 </div>
 
-<div id="heart" onclick="openScroll()">💌</div>
+<!-- WAX SEAL: Dancing & Glowing -->
+<div id="seal" onclick="openScroll()"></div>
 
 <!-- Scroll Area (with wax seal) -->
 <div id="scrollArea">
@@ -229,9 +230,6 @@ Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
 
   <div id="scrollBox">
     <img id="scrollImg" src="scroll.png">
-
-    <!-- WAX SEAL -->
-    <img id="seal" src="seal.png" alt="Wax Seal">
 
     <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
       <input type="date" name="date" required>
@@ -252,22 +250,19 @@ function openScroll(){
   document.getElementById("msg1").classList.add("shrink");
   document.getElementById("msg2").classList.add("shrink");
 
-  const heart = document.getElementById("heart");
+  const seal = document.getElementById("seal");
   const area = document.getElementById("scrollArea");
   const gif = document.getElementById("scrollGif");
   const img = document.getElementById("scrollImg");
   const form = document.querySelector("form");
-  const seal = document.getElementById("seal");
 
   area.style.display="flex";
   gif.style.display="block";
   img.style.display="none";
   form.style.display="none";
 
-  // Wax Seal animation after 2 sec
-  setTimeout(()=>{
-    seal.style.display="block";
-  }, 2000);
+  // Wax Seal stops dancing, and scroll starts
+  seal.style.animation = 'none'; // Stops the dancing
 
   setTimeout(()=>{
     gif.style.display="none";
