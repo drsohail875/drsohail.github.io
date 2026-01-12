@@ -18,18 +18,15 @@ audio{display:none}
   justify-content:center;
 }
 
-/* left */
+/* left content */
 .left{
   flex:1;
-  transition:transform 0.8s ease;
+  transition:transform .8s ease;
 }
 
-/* heart */
-.heart{
-  font-size:50px;
+/* jumping heart svg */
+svg{
   cursor:pointer;
-  display:inline-block;
-  margin-left:10px;
   animation:jump 1s infinite;
 }
 @keyframes jump{
@@ -46,19 +43,12 @@ audio{display:none}
   border:5px solid #b89b4f;
   border-radius:18px;
   padding:20px;
-  animation:unroll .8s ease;
   transform-origin:top;
+  animation:unroll .8s ease;
 }
 @keyframes unroll{
   from{transform:scaleY(0)}
   to{transform:scaleY(1)}
-}
-
-/* seal illusion */
-.seal{
-  text-align:center;
-  font-size:40px;
-  margin-bottom:10px;
 }
 
 /* candle */
@@ -82,11 +72,11 @@ audio{display:none}
   animation:flicker .3s infinite alternate;
 }
 @keyframes flicker{
-  from{opacity:.8}
+  from{opacity:.7}
   to{opacity:1}
 }
 
-/* inputs */
+/* form */
 .scroll input,.scroll textarea{
   width:100%;
   padding:8px;
@@ -105,13 +95,23 @@ audio{display:none}
 <div class="container">
 <div class="final-wrap">
 
-<!-- LEFT CONTENT -->
+<!-- LEFT SIDE -->
 <div class="left" id="leftSide">
 
 <h1 class="header_text">
 Oye hoye!!! 🥀  
 Batao phir kab jaana hai ✨
-<span class="heart" onclick="openScroll()">💌</span>
+
+<svg id="sealHeart" width="60" height="60" viewBox="0 0 100 100"
+     onclick="morphSeal()">
+
+  <path id="shape" fill="#ff4d6d"
+    d="M50 82
+       C20 60,10 45,10 30
+       A20 20 0 0 1 50 30
+       A20 20 0 0 1 90 30
+       C90 45,80 60,50 82Z"/>
+</svg>
 </h1>
 
 <div class="gif_container">
@@ -129,7 +129,6 @@ Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
 <div class="scroll" id="scroll">
 
 <div class="candle"></div>
-<div class="seal">❤️‍🔥</div>
 
 <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
 <input type="hidden" name="_subject" value="She said YES ❤️">
@@ -151,9 +150,26 @@ placeholder="Write something for me..."></textarea><br><br>
 </div>
 
 <script>
-function openScroll(){
-  document.getElementById("scroll").style.display="block";
-  document.getElementById("leftSide").style.transform="translateX(-60px)";
+let morphed=false;
+
+function morphSeal(){
+  if(morphed) return;
+  morphed=true;
+
+  const path=document.getElementById("shape");
+
+  /* heart → wax seal */
+  path.setAttribute(
+    "d",
+    "M50 10 A40 40 0 1 1 49.9 10Z"
+  );
+  path.setAttribute("fill","#b3001b");
+  document.getElementById("sealHeart").style.animation="none";
+
+  setTimeout(()=>{
+    document.getElementById("scroll").style.display="block";
+    document.getElementById("leftSide").style.transform="translateX(-60px)";
+  },400);
 }
 </script>
 
