@@ -16,7 +16,7 @@ audio{display:none}
   padding:4px;
 }
 
-/* MAIN CONTENT */
+/* CONTENT */
 #content{
   text-align:center;
   transform:scale(0.7);
@@ -25,10 +25,10 @@ audio{display:none}
 
 #content.shrink{
   transform:scale(0.55);
-  margin-bottom:-10px; /* 🔥 brings scroll closer */
+  margin-bottom:-6px;
 }
 
-/* CELEBRATION GIF */
+/* GIF */
 .gif_container img{
   width:62vw;
   max-width:230px;
@@ -39,7 +39,12 @@ audio{display:none}
   font-size:34px;
   cursor:pointer;
   animation:jump 1s infinite;
-  margin:0; /* 🔥 no extra gap */
+  margin:4px 0;
+  transition:all 0.6s ease;
+}
+
+#heart.moveUp{
+  margin-top:-6px;   /* 🔥 moves with content */
 }
 
 @keyframes jump{
@@ -47,20 +52,18 @@ audio{display:none}
   50%{transform:translateY(-10px)}
 }
 
-/* SCROLL AREA */
+/* SCROLL */
 #scrollArea{
   display:none;
   flex-direction:column;
   align-items:center;
-  margin-top:-6px; /* 🔥 scroll hugs message */
+  margin-top:-2px;
 }
 
-/* SCROLL GIF */
 #scrollGif{
   width:300px;
 }
 
-/* SCROLL IMAGE */
 #scrollWrapper{
   position:relative;
   width:300px;
@@ -136,8 +139,10 @@ form button{
     </h1>
   </div>
 
+  <!-- HEART -->
   <div id="heart" onclick="openScroll()">💌</div>
 
+  <!-- SCROLL -->
   <div id="scrollArea">
     <img id="scrollGif" src="scroll_icon.gif">
 
@@ -164,12 +169,14 @@ form button{
 <script>
 function openScroll(){
   const content = document.getElementById("content");
+  const heart = document.getElementById("heart");
   const area = document.getElementById("scrollArea");
   const gif = document.getElementById("scrollGif");
   const img = document.getElementById("scrollImg");
   const form = document.getElementById("scrollForm");
 
   content.classList.add("shrink");
+  heart.classList.add("moveUp");
   area.style.display="flex";
 
   gif.style.display="block";
