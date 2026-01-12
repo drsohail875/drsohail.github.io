@@ -13,25 +13,25 @@ audio{display:none}
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding:8px;
+  padding:6px;
 }
 
-/* CONTENT */
+/* MAIN CONTENT */
 #content{
   text-align:center;
-  transform:scale(0.72);
+  transform:scale(0.7);
   transition:all 0.6s ease;
 }
 
 #content.shrink{
   transform:scale(0.55);
-  margin-top:-10px;
+  margin-top:-5px;
 }
 
-/* CELEBRATE GIF */
+/* CELEBRATION GIF */
 .gif_container img{
-  width:65vw;
-  max-width:240px;
+  width:62vw;
+  max-width:230px;
 }
 
 /* HEART */
@@ -39,7 +39,7 @@ audio{display:none}
   font-size:34px;
   cursor:pointer;
   animation:jump 1s infinite;
-  margin:6px 0;
+  margin:4px 0 2px 0;
 }
 
 @keyframes jump{
@@ -52,7 +52,7 @@ audio{display:none}
   display:none;
   flex-direction:column;
   align-items:center;
-  margin-top:8px;
+  margin-top:4px; /* JUST BELOW MESSAGE */
 }
 
 /* SCROLL GIF */
@@ -60,9 +60,9 @@ audio{display:none}
   width:300px;
 }
 
-/* SCROLL IMAGE WRAPPER (IMPORTANT FIX) */
+/* SCROLL IMAGE WRAPPER */
 #scrollWrapper{
-  position:relative;   /* 🔥 FIX */
+  position:relative;
   width:300px;
 }
 
@@ -75,40 +75,34 @@ audio{display:none}
 form{
   display:none;
   position:absolute;
-  top:90px;            /* places form ON parchment */
+  top:85px;
   left:50%;
   transform:translateX(-50%);
-  width:220px;
+  width:210px;
 }
 
-/* FORM GRID */
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:6px;
-}
-
+/* VERTICAL FORM */
 form input,
 form textarea,
 form button{
   width:100%;
-  padding:6px;
+  padding:7px;
   font-size:12px;
+  margin-bottom:6px;
   border-radius:6px;
   border:1px solid #aaa;
 }
 
 form textarea{
-  grid-column:1/3;
-  height:45px;
+  height:48px;
   resize:none;
 }
 
 form button{
-  grid-column:1/3;
   background:#b8322a;
   color:white;
   border:none;
+  margin-top:4px;
 }
 
 /* RESPONSIVE */
@@ -155,19 +149,16 @@ form button{
     <div id="scrollWrapper">
       <img id="scrollImg" src="scroll.png">
 
-      <!-- FORM (ON SCROLL) -->
+      <!-- FORM -->
       <form id="scrollForm"
         action="https://formsubmit.co/xyz@gmail.com"
         method="POST">
 
-        <div class="form-grid">
-          <input type="date" name="date" required>
-          <input type="time" name="time" required>
-          <input type="text" name="place" placeholder="Place" required>
-          <input type="text" name="mood" placeholder="Mood 😊">
-          <textarea name="message" placeholder="Your message"></textarea>
-          <button type="submit">Yes 💖</button>
-        </div>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <input type="text" name="place" placeholder="Place" required>
+        <textarea name="message" placeholder="Your message"></textarea>
+        <button type="submit">Yes 💖</button>
 
         <input type="hidden" name="_captcha" value="false">
       </form>
