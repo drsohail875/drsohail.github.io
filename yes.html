@@ -273,8 +273,8 @@ function openScroll(){
 
   setTimeout(()=>{
     gif.style.display="none";
-    img.style.display="block"; // Scroll PNG appears after 7 seconds
-  }, 7000); // Increased duration by 2 seconds (7 seconds total)
+    img.style.display="block"; // Scroll PNG appears after 5 seconds
+  }, 5000); // Increased duration by 2 seconds (5 seconds total)
 
   setTimeout(()=>{
     form.style.display="block";
@@ -284,7 +284,7 @@ function openScroll(){
 // Function to create Hearts and Flowers
 function createHeartsAndFlowers() {
   // Create 16 hearts scattered randomly
-  const hearts = ["💘", "💝", "💖", "❤️‍🔥", "💗", "❤️‍🔥", "💓", "❤️‍🔥", "💞", "❤️‍🔥", "💕", "❤️‍🔥", "❣️", "❤️‍🔥", "❤️‍🔥", "❤️❤️‍🔥", "💘", "💌"];
+  const hearts = ["💘", "💝", "💖", "❤️‍🔥", "💗", "❤️‍🔥", "💓", "❤️‍🔥", "💞", "❤️‍🔥", "💕", "❤️‍🔥", "❣️", "❤️‍🔥", "❤️‍🔥", "❤️❤️‍🔥", "💘",];
   
   hearts.forEach(heartEmoji => {
     let heart = document.createElement("div");
