@@ -14,62 +14,94 @@ audio{display:none}
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
-  gap:12px;
-  padding:20px;
+  padding:12px;
 }
 
-/* content block */
+/* content */
 #content{
-  transition: all 0.6s ease;
   text-align:center;
+  transform:scale(0.7);          /* SMALLER DEFAULT */
+  transition:all 0.6s ease;
 }
 
 #content.shrink{
-  transform: scale(0.72);
-  margin-top:-10px;
+  transform:scale(0.55);         /* EVEN SMALLER AFTER TAP */
+  margin-top:-20px;
 }
 
-/* gifs */
+/* gif */
 .gif_container img{
-  max-width:260px;
-  width:70vw;
+  width:50vw;
+  max-width:200px;
 }
 
-/* jumping heart */
+/* heart */
 #heart{
-  font-size:42px;
+  font-size:34px;
   cursor:pointer;
-  animation: jump 1s infinite;
-  margin-top:10px;
+  animation:jump 1s infinite;
+  margin:6px 0;
 }
 
 @keyframes jump{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
+  50%{transform:translateY(-10px)}
 }
 
-/* scroll area */
+/* scroll */
 #scrollArea{
   display:none;
   flex-direction:column;
   align-items:center;
-  margin-top:10px;
+  position:relative;
+  margin-top:6px;
 }
 
 #scrollGif{
-  width:240px;
+  width:210px;
 }
 
 #scrollImg{
-  width:260px;
   display:none;
-  margin-top:-20px;
+  width:260px;
 }
 
-/* responsive */
-@media (min-width:768px){
-  .gif_container img{max-width:300px}
+/* form on scroll */
+form{
+  position:absolute;
+  top:75px;
+  width:190px;
+  text-align:center;
+}
+
+form input,
+form textarea,
+form button{
+  width:100%;
+  margin:5px 0;
+  padding:6px;
+  font-size:12px;
+  border-radius:6px;
+  border:1px solid #aaa;
+}
+
+form textarea{
+  resize:none;
+  height:45px;
+}
+
+form button{
+  background:#b8322a;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+/* tablet / laptop */
+@media(min-width:768px){
+  #content{transform:scale(0.78)}
+  #content.shrink{transform:scale(0.6)}
+  .gif_container img{max-width:230px}
   #scrollImg{width:300px}
 }
 </style>
@@ -85,7 +117,6 @@ audio{display:none}
 
   <!-- MAIN CONTENT -->
   <div id="content">
-
     <h1 class="header_text">
       Oye Hoye!!! 🐣🥀<br>
       Batao fir kab jana hai ✨
@@ -99,32 +130,45 @@ audio{display:none}
       Mai waha bhi jakar tujhe maang loon<br>
       Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
     </h1>
-
   </div>
 
-  <!-- JUMPING HEART -->
+  <!-- HEART -->
   <div id="heart" onclick="openScroll()">💌</div>
 
   <!-- SCROLL -->
   <div id="scrollArea">
-    <img id="scrollGif" src="scroll.gif">
+    <img id="scrollGif" src="scroll_icon.gif">
     <img id="scrollImg" src="scroll.png">
+
+    <!-- FORM (4 COLUMNS DATA) -->
+    <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
+      <input type="date" name="date" required>
+      <input type="time" name="time" required>
+      <input type="text" name="place" placeholder="Place" required>
+      <textarea name="message" placeholder="Your message"></textarea>
+
+      <input type="hidden" name="_captcha" value="false">
+      <button type="submit">Yes 💖</button>
+    </form>
   </div>
 
 </div>
 
 <script>
 function openScroll(){
-  document.getElementById("content").classList.add("shrink");
-
+  const content = document.getElementById("content");
   const area = document.getElementById("scrollArea");
   const gif = document.getElementById("scrollGif");
   const img = document.getElementById("scrollImg");
 
+  content.classList.add("shrink");
   area.style.display="flex";
+
+  /* GIF FIRST */
   gif.style.display="block";
   img.style.display="none";
 
+  /* THEN IMAGE */
   setTimeout(()=>{
     gif.style.display="none";
     img.style.display="block";
