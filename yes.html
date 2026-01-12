@@ -278,8 +278,8 @@ function openScroll(){
 
   setTimeout(()=>{
     gif.style.display="none";
-    img.style.display="block"; // Scroll PNG appears after 2 seconds
-  }, 2000); // Scroll GIF now stays for 2 seconds
+    img.style.display="block"; // Scroll PNG appears after 1.75 seconds
+  }, 1750); // Scroll GIF now stays for 1.75 seconds
 
   setTimeout(()=>{
     form.style.display="block";
@@ -301,7 +301,7 @@ function createHeartsAndFlowers() {
   });
 
   // Create 10 flowers scattered randomly (using emoji)
-  const flowers = ["🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "", "🌹", "🍁"];
+  const flowers = ["🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "🍁", "🌹", "🍁"];
   for (let i = 0; i < 10; i++) {
     let flower = document.createElement("div");
     flower.classList.add("flower");
