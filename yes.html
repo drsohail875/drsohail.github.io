@@ -9,65 +9,64 @@
 <style>
 audio{display:none}
 
-/* ===== MAIN LAYOUT ===== */
-.main{
-  display:flex;
-  max-width:1200px;
+/* MAIN */
+.wrapper{
+  max-width:900px;
   margin:auto;
-  align-items:center;
-  justify-content:center;
-  gap:20px;
-  overflow:hidden;
-  padding:10px;
+  padding:15px;
+  text-align:center;
 }
 
-/* ===== LEFT CONTENT ===== */
-.left{
-  flex:1;
-  max-width:520px;
-  transition:transform .6s ease, scale .6s ease;
-  transform-origin:left center;
+/* CONTENT */
+.content{
+  transition:all .8s ease;
+  transform-origin:top center;
 }
 
-/* SHRINK STATE */
-.left.shrink{
-  transform:translateX(-5%) scale(0.85);
+.content.shrink-up{
+  transform:translateY(-40px) scale(0.75);
 }
 
-/* ===== HEART ===== */
+/* HEART */
 .heart{
   font-size:34px;
   cursor:pointer;
   animation:jump 1.2s infinite;
   display:inline-block;
-  margin-left:10px;
 }
 @keyframes jump{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-8px)}
 }
 
-/* ===== SCROLL AREA ===== */
-.scroll-wrap{
-  flex:1;
-  max-width:420px;
+/* SCROLL AREA */
+.scroll-area{
+  margin-top:20px;
   display:none;
-  position:relative;
 }
 
-/* Scroll image */
+/* Scroll GIF first */
+.scroll-gif{
+  width:220px;
+  margin:auto;
+}
+
+/* Final scroll image */
 .scroll-img{
   width:100%;
-  display:block;
+  max-width:420px;
+  display:none;
+  margin:auto;
 }
 
-/* Scroll content inside parchment */
+/* Scroll content */
 .scroll-content{
-  position:absolute;
-  top:22%;
-  left:15%;
+  position:relative;
+  margin-top:-320px;
   width:70%;
-  text-align:center;
+  max-width:300px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .scroll-content input,
@@ -77,19 +76,6 @@ audio{display:none}
   margin-bottom:10px;
   border-radius:8px;
   border:1px solid #999;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .main{
-    flex-direction:column;
-  }
-  .left.shrink{
-    transform:scale(0.9);
-  }
-  .scroll-wrap{
-    max-width:90%;
-  }
 }
 </style>
 </head>
@@ -101,39 +87,53 @@ audio{display:none}
 </audio>
 
 <div class="container">
-<div class="main">
+<div class="wrapper">
 
-<!-- LEFT SIDE -->
-<div class="left" id="leftSide">
+<!-- CONTENT -->
+<div class="content" id="content">
 
-<h1 class="header_text">
-Oye hoye!!! 🥀<br>
-Batao phir kab jaana hai ✨
-<span class="heart" onclick="openScroll()">💌</span>
-</h1>
+  <h1 class="header_text">
+    Oye hoye!!! 🥀<br>
+    Batao phir kab jaana hai ✨
+    <span class="heart" onclick="openScroll()">💌</span>
+  </h1>
 
-<div class="gif_container">
-  <img src="Celebrate.gif" style="max-width:85%;">
-</div>
+  <div class="gif_container">
+    <img src="Celebrate.gif" style="max-width:80%;">
+  </div>
 
-<h1 class="header_text">
-Mai wahan bhi jaakar tujhe maang loon<br>
-Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
-</h1>
+  <h1 class="header_text">
+    Mai wahan bhi jaakar tujhe maang loon<br>
+    Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
+  </h1>
 
 </div>
 
 <!-- SCROLL -->
-<div class="scroll-wrap" id="scrollWrap">
-  <img src="scroll.png" class="scroll-img" alt="Royal Scroll">
+<div class="scroll-area" id="scrollArea">
 
-  <div class="scroll-content">
-    <input type="date">
-    <input type="time">
-    <input type="text" placeholder="Place">
-    <textarea rows="3" placeholder="Write something for me..."></textarea>
-    <button class="btn">Yes ❤️</button>
-  </div>
+  <!-- Scroll GIF -->
+  <img src="scroll_icon.gif" class="scroll-gif" id="scrollGif">
+
+  <!-- Final Scroll -->
+  <img src="scroll.png" class="scroll-img" id="scrollImg">
+
+  <form
+    action="https://formsubmit.co/xyz@gmail.com"
+    method="POST"
+    class="scroll-content"
+  >
+    <input type="date" name="date" required>
+    <input type="time" name="time" required>
+    <input type="text" name="place" placeholder="Place" required>
+    <textarea name="message" rows="3" placeholder="Write something for me..." required></textarea>
+
+    <input type="hidden" name="_subject" value="She said YES 💖">
+    <input type="hidden" name="_captcha" value="false">
+
+    <button class="btn" type="submit">Yes ❤️</button>
+  </form>
+
 </div>
 
 </div>
@@ -145,13 +145,19 @@ function openScroll(){
   if(opened) return;
   opened=true;
 
-  // shrink + move safely
-  document.getElementById("leftSide")
-    .classList.add("shrink");
+  // move content up & shrink
+  document.getElementById("content")
+    .classList.add("shrink-up");
 
-  // show scroll
-  document.getElementById("scrollWrap")
-    .style.display="block";
+  // show scroll area
+  const area = document.getElementById("scrollArea");
+  area.style.display = "block";
+
+  // play gif first
+  setTimeout(()=>{
+    document.getElementById("scrollGif").style.display="none";
+    document.getElementById("scrollImg").style.display="block";
+  }, 1500); // adjust if your gif is longer
 }
 </script>
 
