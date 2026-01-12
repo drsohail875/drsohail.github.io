@@ -3,117 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet" href="./yes_style.css">
 
 <style>
 audio{display:none}
 
-/* ===== LAYOUT ===== */
-.final-wrap{
+.main{
   display:flex;
-  width:100%;
   max-width:1200px;
+  margin:auto;
   align-items:center;
   justify-content:center;
   gap:20px;
   overflow:hidden;
 }
 
-/* LEFT CONTENT */
+/* LEFT SIDE */
 .left{
   flex:1;
   max-width:520px;
-  transition:transform .8s ease;
+  transition:transform .7s ease;
 }
 
-/* HEART SVG */
-svg{
+/* JUMPING HEART */
+.heart{
+  display:inline-block;
+  font-size:36px;
   cursor:pointer;
   animation:jump 1s infinite;
 }
 @keyframes jump{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
+  50%{transform:translateY(-10px)}
 }
 
-/* ===== ROYAL SCROLL ===== */
+/* SCROLL */
 .scroll-wrap{
   flex:1;
   max-width:420px;
   display:none;
-  animation:appear .4s ease;
-}
-
-@keyframes appear{
-  from{opacity:0}
-  to{opacity:1}
-}
-
-/* scroll body */
-.scroll{
-  background:#f9f1d8;
-  padding:25px 20px;
-  border-left:6px solid #b89b4f;
-  border-right:6px solid #b89b4f;
-  position:relative;
-  animation:unroll .9s ease;
-  transform-origin:top;
-}
-
-/* scroll rolls */
-.scroll::before,
-.scroll::after{
-  content:'';
-  position:absolute;
-  left:-6px;
-  right:-6px;
-  height:26px;
-  background:#e6d3a3;
-  border-radius:50%;
-}
-.scroll::before{
-  top:-22px;
-}
-.scroll::after{
-  bottom:-22px;
-}
-
-@keyframes unroll{
-  from{transform:scaleY(0)}
-  to{transform:scaleY(1)}
-}
-
-/* CANDLE */
-.candle{
-  width:22px;
-  height:45px;
-  background:#fff;
-  margin:0 auto 15px;
   position:relative;
 }
-.candle::after{
-  content:'';
-  width:14px;
-  height:14px;
-  background:orange;
-  border-radius:50%;
-  position:absolute;
-  top:-12px;
-  left:4px;
-  box-shadow:0 0 25px orange;
-  animation:flicker .3s infinite alternate;
-}
-@keyframes flicker{
-  from{opacity:.7}
-  to{opacity:1}
+
+.scroll-img{
+  width:100%;
 }
 
-/* FORM */
-.scroll input,.scroll textarea{
+.scroll-content{
+  position:absolute;
+  top:22%;
+  left:15%;
+  width:70%;
+  text-align:center;
+}
+
+.scroll-content input,
+.scroll-content textarea{
   width:100%;
   padding:8px;
   border-radius:8px;
-  border:1px solid #aaa;
+  border:1px solid #999;
+  margin-bottom:10px;
 }
 </style>
 </head>
@@ -125,24 +76,15 @@ svg{
 </audio>
 
 <div class="container">
-<div class="final-wrap">
+<div class="main">
 
 <!-- LEFT -->
 <div class="left" id="leftSide">
 
 <h1 class="header_text">
-Oye hoye!!! 🥀  
+Oye hoye!!! 🥀<br>
 Batao phir kab jaana hai ✨
-
-<svg id="sealHeart" width="60" height="60" viewBox="0 0 100 100"
-onclick="morphSeal()">
-<path id="shape" fill="#ff4d6d"
-d="M50 82
-   C20 60,10 45,10 30
-   A20 20 0 0 1 50 30
-   A20 20 0 0 1 90 30
-   C90 45,80 60,50 82Z"/>
-</svg>
+<span class="heart" onclick="openScroll()">💌</span>
 </h1>
 
 <div class="gif_container">
@@ -156,26 +98,16 @@ Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
 
 </div>
 
-<!-- RIGHT SCROLL -->
+<!-- SCROLL -->
 <div class="scroll-wrap" id="scrollWrap">
-  <div class="scroll">
+  <img src="scroll.png" class="scroll-img">
 
-    <div class="candle"></div>
-
-    <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="She said YES ❤️">
-      <input type="hidden" name="_captcha" value="false">
-
-      <input type="date" name="Date" required><br><br>
-      <input type="time" name="Time" required><br><br>
-      <input type="text" name="Place" placeholder="Place" required><br><br>
-
-      <textarea name="Message" rows="4"
-      placeholder="Write something for me..."></textarea><br><br>
-
-      <button class="btn" type="submit">Yes ❤️</button>
-    </form>
-
+  <div class="scroll-content">
+    <input type="date">
+    <input type="time">
+    <input type="text" placeholder="Place">
+    <textarea rows="3" placeholder="Write something for me..."></textarea>
+    <button class="btn">Yes ❤️</button>
   </div>
 </div>
 
@@ -183,17 +115,16 @@ Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
 </div>
 
 <script>
-let done=false;
-function morphSeal(){
-  if(done) return;
-  done=true;
+let opened=false;
+function openScroll(){
+  if(opened) return;
+  opened=true;
 
-  const p=document.getElementById("shape");
-  p.setAttribute("d","M50 10 A40 40 0 1 1 49.9 10Z");
-  p.setAttribute("fill","#b3001b");
+  document.getElementById("leftSide")
+    .style.transform="translateX(-40px)";
 
-  document.getElementById("leftSide").style.transform="translateX(-30px)";
-  document.getElementById("scrollWrap").style.display="block";
+  document.getElementById("scrollWrap")
+    .style.display="block";
 }
 </script>
 
