@@ -13,7 +13,7 @@ audio{display:none}
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding:4px;
+  padding:2px; /* tighter */
 }
 
 /* CONTENT */
@@ -25,7 +25,7 @@ audio{display:none}
 
 #content.shrink{
   transform:scale(0.55);
-  margin-bottom:-6px;
+  margin-bottom:-14px; /* 🔥 closer */
 }
 
 /* GIF */
@@ -39,17 +39,17 @@ audio{display:none}
   font-size:34px;
   cursor:pointer;
   animation:jump 1s infinite;
-  margin:4px 0;
+  margin:-2px 0 -4px 0; /* 🔥 very close */
   transition:all 0.6s ease;
 }
 
 #heart.moveUp{
-  margin-top:-6px;   /* 🔥 moves with content */
+  margin-top:-8px;
 }
 
 @keyframes jump{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+  50%{transform:translateY(-8px)} /* softer */
 }
 
 /* SCROLL */
@@ -57,7 +57,7 @@ audio{display:none}
   display:none;
   flex-direction:column;
   align-items:center;
-  margin-top:-2px;
+  margin-top:-10px; /* 🔥 scroll hugs heart */
 }
 
 #scrollGif{
@@ -78,7 +78,7 @@ audio{display:none}
 form{
   display:none;
   position:absolute;
-  top:85px;
+  top:82px; /* slight lift */
   left:50%;
   transform:translateX(-50%);
   width:210px;
@@ -90,13 +90,13 @@ form button{
   width:100%;
   padding:7px;
   font-size:12px;
-  margin-bottom:6px;
+  margin-bottom:5px;
   border-radius:6px;
   border:1px solid #aaa;
 }
 
 form textarea{
-  height:48px;
+  height:46px;
   resize:none;
 }
 
@@ -139,10 +139,8 @@ form button{
     </h1>
   </div>
 
-  <!-- HEART -->
   <div id="heart" onclick="openScroll()">💌</div>
 
-  <!-- SCROLL -->
   <div id="scrollArea">
     <img id="scrollGif" src="scroll_icon.gif">
 
