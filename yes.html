@@ -288,7 +288,7 @@ function openScroll(){
 
 // Function to create Hearts and Flowers
 function createHeartsAndFlowers() {
-  // Create 16 hearts scattered randomly
+  // Create 17 hearts scattered randomly
   const hearts = ["💘", "💝", "💖", "❤️‍🔥", "💗", "❤️‍🔥", "💓", "❤️‍🔥", "💞", "❤️‍🔥", "💕", "❤️‍🔥", "❣️", "❤️‍🔥", "❤️‍🔥", "❤️‍🔥", "💘",];
   
   hearts.forEach(heartEmoji => {
@@ -300,9 +300,9 @@ function createHeartsAndFlowers() {
     document.body.appendChild(heart);
   });
 
-  // Create 10 flowers scattered randomly (using emoji)
+  // Create 9 flowers scattered randomly (using emoji)
   const flowers = ["🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "🍁", "🌹", "🍁"];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 9; i++) {
     let flower = document.createElement("div");
     flower.classList.add("flower");
     flower.innerHTML = flowers[i];  // Flower emoji
