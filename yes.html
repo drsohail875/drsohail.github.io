@@ -136,7 +136,7 @@ form button{
   background-image: url('seal.png'); /* Wax seal image */
   background-size: cover;
   position: absolute;
-  top: 50%; /* Position seal in center */
+  top: 80%; /* Position seal below the message */
   left: 50%;
   transform: translate(-50%, -50%);
   display: block;
@@ -158,20 +158,7 @@ form button{
   to{filter:drop-shadow(0 0 18px rgba(255,0,0,1));}
 }
 
-/* CONFETTI EFFECT */
-@keyframes confetti {
-  0% { top: 100%; left: 10%; }
-  100% { top: 0%; left: 90%; }
-}
-
-.confetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #ff69b4;
-  animation: confetti 1s linear infinite;
-}
-
+/* HEARTS SCATTERING */
 .floating-heart {
   position: absolute;
   font-size: 30px;
@@ -182,6 +169,22 @@ form button{
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* FLOWERS SCATTERING */
+.flower {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: flowerFloat 5s ease-in-out infinite;
+}
+
+@keyframes flowerFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-25px); }
   100% { transform: translateY(0); }
 }
 
@@ -264,8 +267,8 @@ function openScroll(){
   // Wax Seal stops dancing, and scroll starts
   seal.style.animation = 'none'; // Stops the dancing
 
-  // Confetti & Floating Hearts
-  createConfettiAndHearts();
+  // Create Hearts and Flowers
+  createHeartsAndFlowers();
 
   setTimeout(()=>{
     gif.style.display="none";
@@ -277,25 +280,26 @@ function openScroll(){
   },2400);
 }
 
-// Function to create Confetti and Floating Hearts
-function createConfettiAndHearts() {
-  // Create confetti particles
-  for (let i = 0; i < 30; i++) {
-    let confetti = document.createElement("div");
-    confetti.classList.add("confetti");
-    confetti.style.left = Math.random() * 100 + "%";
-    confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
-    document.body.appendChild(confetti);
-  }
-
-  // Create floating hearts
-  for (let i = 0; i < 5; i++) {
+// Function to create Hearts and Flowers
+function createHeartsAndFlowers() {
+  // Create 16 hearts scattered randomly
+  for (let i = 0; i < 16; i++) {
     let heart = document.createElement("div");
     heart.classList.add("floating-heart");
     heart.innerHTML = "💖";
     heart.style.left = Math.random() * 100 + "%";
-    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    heart.style.top = Math.random() * 100 + "%";
     document.body.appendChild(heart);
+  }
+
+  // Create 10 flowers scattered randomly
+  for (let i = 0; i < 10; i++) {
+    let flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.style.backgroundImage = "url('flower.png')"; // Replace with your flower image
+    flower.style.left = Math.random() * 100 + "%";
+    flower.style.top = Math.random() * 100 + "%";
+    document.body.appendChild(flower);
   }
 }
 </script>
