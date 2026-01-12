@@ -9,6 +9,7 @@
 <style>
 audio{display:none}
 
+/* LAYOUT */
 .main{
   display:flex;
   max-width:1200px;
@@ -25,18 +26,52 @@ audio{display:none}
   transition:transform .6s ease;
 }
 
-.heart{
-  font-size:36px;
-  cursor:pointer;
-  animation:jump 1s infinite;
+/* TRIGGER */
+.invite-trigger{
   display:inline-block;
-}
-@keyframes jump{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+  position:relative;
+  cursor:pointer;
+  margin-top:10px;
 }
 
-/* IMAGE SCROLL */
+.scroll-icon{
+  width:50px;
+  animation:bounce 1.2s infinite;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+/* CANDLE */
+.candle{
+  width:16px;
+  height:32px;
+  background:#fff;
+  position:absolute;
+  top:-42px;
+  left:50%;
+  transform:translateX(-50%);
+}
+.candle::after{
+  content:'';
+  width:12px;
+  height:12px;
+  background:orange;
+  border-radius:50%;
+  position:absolute;
+  top:-10px;
+  left:2px;
+  box-shadow:0 0 25px orange;
+  animation:flicker .3s infinite alternate;
+}
+@keyframes flicker{
+  from{opacity:.6}
+  to{opacity:1}
+}
+
+/* SCROLL IMAGE */
 .scroll-wrap{
   flex:1;
   max-width:420px;
@@ -83,8 +118,14 @@ audio{display:none}
 <h1 class="header_text">
 Oye hoye!!! 🥀<br>
 Batao phir kab jaana hai ✨
-<span class="heart" onclick="openScroll()">💌</span>
 </h1>
+
+<div style="text-align:center;">
+  <div class="invite-trigger" onclick="openScroll()">
+    <div class="candle"></div>
+    <img src="scroll_icon.gif" class="scroll-icon" alt="Open Invitation">
+  </div>
+</div>
 
 <div class="gif_container">
   <img src="Celebrate.gif">
@@ -97,7 +138,7 @@ Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
 
 </div>
 
-<!-- IMAGE SCROLL -->
+<!-- SCROLL -->
 <div class="scroll-wrap" id="scrollWrap">
   <img src="scroll.png" class="scroll-img" alt="Royal Scroll">
 
