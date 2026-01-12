@@ -9,7 +9,7 @@
 <style>
 audio{display:none}
 
-/* LAYOUT */
+/* ===== MAIN LAYOUT ===== */
 .main{
   display:flex;
   max-width:1200px;
@@ -18,60 +18,36 @@ audio{display:none}
   justify-content:center;
   gap:20px;
   overflow:hidden;
+  padding:10px;
 }
 
+/* ===== LEFT CONTENT ===== */
 .left{
   flex:1;
   max-width:520px;
-  transition:transform .6s ease;
+  transition:transform .6s ease, scale .6s ease;
+  transform-origin:left center;
 }
 
-/* TRIGGER */
-.invite-trigger{
-  display:inline-block;
-  position:relative;
+/* SHRINK STATE */
+.left.shrink{
+  transform:translateX(-5%) scale(0.85);
+}
+
+/* ===== HEART ===== */
+.heart{
+  font-size:34px;
   cursor:pointer;
-  margin-top:10px;
+  animation:jump 1.2s infinite;
+  display:inline-block;
+  margin-left:10px;
 }
-
-.scroll-icon{
-  width:50px;
-  animation:bounce 1.2s infinite;
-}
-
-@keyframes bounce{
+@keyframes jump{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-8px)}
 }
 
-/* CANDLE */
-.candle{
-  width:16px;
-  height:32px;
-  background:#fff;
-  position:absolute;
-  top:-42px;
-  left:50%;
-  transform:translateX(-50%);
-}
-.candle::after{
-  content:'';
-  width:12px;
-  height:12px;
-  background:orange;
-  border-radius:50%;
-  position:absolute;
-  top:-10px;
-  left:2px;
-  box-shadow:0 0 25px orange;
-  animation:flicker .3s infinite alternate;
-}
-@keyframes flicker{
-  from{opacity:.6}
-  to{opacity:1}
-}
-
-/* SCROLL IMAGE */
+/* ===== SCROLL AREA ===== */
 .scroll-wrap{
   flex:1;
   max-width:420px;
@@ -79,11 +55,13 @@ audio{display:none}
   position:relative;
 }
 
+/* Scroll image */
 .scroll-img{
   width:100%;
   display:block;
 }
 
+/* Scroll content inside parchment */
 .scroll-content{
   position:absolute;
   top:22%;
@@ -100,6 +78,19 @@ audio{display:none}
   border-radius:8px;
   border:1px solid #999;
 }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .main{
+    flex-direction:column;
+  }
+  .left.shrink{
+    transform:scale(0.9);
+  }
+  .scroll-wrap{
+    max-width:90%;
+  }
+}
 </style>
 </head>
 
@@ -112,23 +103,17 @@ audio{display:none}
 <div class="container">
 <div class="main">
 
-<!-- LEFT CONTENT -->
+<!-- LEFT SIDE -->
 <div class="left" id="leftSide">
 
 <h1 class="header_text">
 Oye hoye!!! 🥀<br>
 Batao phir kab jaana hai ✨
+<span class="heart" onclick="openScroll()">💌</span>
 </h1>
 
-<div style="text-align:center;">
-  <div class="invite-trigger" onclick="openScroll()">
-    <div class="candle"></div>
-    <img src="scroll_icon.gif" class="scroll-icon" alt="Open Invitation">
-  </div>
-</div>
-
 <div class="gif_container">
-  <img src="Celebrate.gif">
+  <img src="Celebrate.gif" style="max-width:85%;">
 </div>
 
 <h1 class="header_text">
@@ -160,9 +145,11 @@ function openScroll(){
   if(opened) return;
   opened=true;
 
+  // shrink + move safely
   document.getElementById("leftSide")
-    .style.transform="translateX(-40px)";
+    .classList.add("shrink");
 
+  // show scroll
   document.getElementById("scrollWrap")
     .style.display="block";
 }
