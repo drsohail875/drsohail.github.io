@@ -188,6 +188,11 @@ form button{
 @media(max-width:480px){
   .message{font-size:30px}
   .message.shrink{font-size:22px}
+
+  /* Adjust seal position on mobile */
+  #seal {
+    top: 90%; /* Position it slightly lower on mobile */
+  }
 }
 
 @media(min-width:768px){
@@ -273,12 +278,12 @@ function openScroll(){
 
   setTimeout(()=>{
     gif.style.display="none";
-    img.style.display="block"; // Scroll PNG appears after 3.5 seconds
-  }, 3500); // Scroll GIF now stays for 3.5 seconds
+    img.style.display="block"; // Scroll PNG appears after 3 seconds
+  }, 3000); // Scroll GIF now stays for 3 seconds
 
   setTimeout(()=>{
     form.style.display="block";
-  },3900); // Show form after scroll transition
+  },3400); // Show form after scroll transition
 }
 
 // Function to create Hearts and Flowers
