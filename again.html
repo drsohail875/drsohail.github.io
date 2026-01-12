@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="./styles.css">
-  <style>
-    video {
-      width: 85%;
-      border-radius: 20px;
-    }
-    .buttons {
-      margin-top: 25px;
-      justify-content: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="./yes_style.css">
+
+<style>
+audio{display:none}
+
+.gifs{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.gifs img{
+  width:220px;
+  max-width:40vw;
+}
+</style>
 </head>
 
 <body>
 
+<audio autoplay loop>
+  <source src="Maanjao.mp3" type="audio/mp3">
+</audio>
+
 <div class="container">
 
-  <div class="gif_container">
-    <video autoplay loop>
-      <source src="Dil.mp4" type="video/mp4">
-    </video>
+  <div class="gifs">
+    <img src="Crying.gif" alt="crying">
+    <img src="Melting.gif" alt="melting">
   </div>
 
   <h1 class="header_text">
-    Mar to jana hi hai ek din,<br>
-    Tum mil jao to thoda jee lenge💘
+    Glaciers pighal rahe hain 🧊<br>
+    Par tumhara dil ❤️ nahi pighal raha 🥺🥺
   </h1>
 
-  <div class="buttons">
-    <button class="btn" onclick="location.href='yes.html'">Yes</button>
-    <button class="btn" onclick="location.href='no.html'">No</button>
+  <div style="text-align:center; margin-top:25px;">
+    <button class="btn big-btn" onclick="location.href='again.html'">
+      Try Again 💕
+    </button>
   </div>
 
 </div>
