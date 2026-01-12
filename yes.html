@@ -9,73 +9,68 @@
 <style>
 audio{display:none}
 
-/* MAIN */
-.wrapper{
-  max-width:900px;
-  margin:auto;
-  padding:15px;
+/* layout */
+.container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:12px;
+  padding:20px;
+}
+
+/* content block */
+#content{
+  transition: all 0.6s ease;
   text-align:center;
 }
 
-/* CONTENT */
-.content{
-  transition:all .8s ease;
-  transform-origin:top center;
+#content.shrink{
+  transform: scale(0.72);
+  margin-top:-10px;
 }
 
-.content.shrink-up{
-  transform:translateY(-40px) scale(0.75);
+/* gifs */
+.gif_container img{
+  max-width:260px;
+  width:70vw;
 }
 
-/* HEART */
-.heart{
-  font-size:34px;
+/* jumping heart */
+#heart{
+  font-size:42px;
   cursor:pointer;
-  animation:jump 1.2s infinite;
-  display:inline-block;
+  animation: jump 1s infinite;
+  margin-top:10px;
 }
+
 @keyframes jump{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
+  50%{transform:translateY(-12px)}
 }
 
-/* SCROLL AREA */
-.scroll-area{
-  margin-top:20px;
+/* scroll area */
+#scrollArea{
   display:none;
+  flex-direction:column;
+  align-items:center;
+  margin-top:10px;
 }
 
-/* Scroll GIF first */
-.scroll-gif{
-  width:220px;
-  margin:auto;
+#scrollGif{
+  width:240px;
 }
 
-/* Final scroll image */
-.scroll-img{
-  width:100%;
-  max-width:420px;
+#scrollImg{
+  width:260px;
   display:none;
-  margin:auto;
+  margin-top:-20px;
 }
 
-/* Scroll content */
-.scroll-content{
-  position:relative;
-  margin-top:-320px;
-  width:70%;
-  max-width:300px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.scroll-content input,
-.scroll-content textarea{
-  width:100%;
-  padding:8px;
-  margin-bottom:10px;
-  border-radius:8px;
-  border:1px solid #999;
+/* responsive */
+@media (min-width:768px){
+  .gif_container img{max-width:300px}
+  #scrollImg{width:300px}
 }
 </style>
 </head>
@@ -87,77 +82,53 @@ audio{display:none}
 </audio>
 
 <div class="container">
-<div class="wrapper">
 
-<!-- CONTENT -->
-<div class="content" id="content">
+  <!-- MAIN CONTENT -->
+  <div id="content">
 
-  <h1 class="header_text">
-    Oye hoye!!! 🥀<br>
-    Batao phir kab jaana hai ✨
-    <span class="heart" onclick="openScroll()">💌</span>
-  </h1>
+    <h1 class="header_text">
+      Oye Hoye!!! 🐣🥀<br>
+      Batao fir kab jana hai ✨
+    </h1>
 
-  <div class="gif_container">
-    <img src="Celebrate.gif" style="max-width:80%;">
+    <div class="gif_container">
+      <img src="Celebrate.gif">
+    </div>
+
+    <h1 class="header_text">
+      Mai waha bhi jakar tujhe maang loon<br>
+      Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
+    </h1>
+
   </div>
 
-  <h1 class="header_text">
-    Mai wahan bhi jaakar tujhe maang loon<br>
-    Koi bata de mujhe qudrat ke faisle kahan hote hain 🥀❤️
-  </h1>
+  <!-- JUMPING HEART -->
+  <div id="heart" onclick="openScroll()">💌</div>
 
-</div>
+  <!-- SCROLL -->
+  <div id="scrollArea">
+    <img id="scrollGif" src="scroll.gif">
+    <img id="scrollImg" src="scroll.png">
+  </div>
 
-<!-- SCROLL -->
-<div class="scroll-area" id="scrollArea">
-
-  <!-- Scroll GIF -->
-  <img src="scroll_icon.gif" class="scroll-gif" id="scrollGif">
-
-  <!-- Final Scroll -->
-  <img src="scroll.png" class="scroll-img" id="scrollImg">
-
-  <form
-    action="https://formsubmit.co/xyz@gmail.com"
-    method="POST"
-    class="scroll-content"
-  >
-    <input type="date" name="date" required>
-    <input type="time" name="time" required>
-    <input type="text" name="place" placeholder="Place" required>
-    <textarea name="message" rows="3" placeholder="Write something for me..." required></textarea>
-
-    <input type="hidden" name="_subject" value="She said YES 💖">
-    <input type="hidden" name="_captcha" value="false">
-
-    <button class="btn" type="submit">Yes ❤️</button>
-  </form>
-
-</div>
-
-</div>
 </div>
 
 <script>
-let opened=false;
 function openScroll(){
-  if(opened) return;
-  opened=true;
+  document.getElementById("content").classList.add("shrink");
 
-  // move content up & shrink
-  document.getElementById("content")
-    .classList.add("shrink-up");
-
-  // show scroll area
   const area = document.getElementById("scrollArea");
-  area.style.display = "block";
+  const gif = document.getElementById("scrollGif");
+  const img = document.getElementById("scrollImg");
 
-  // play gif first
+  area.style.display="flex";
+  gif.style.display="block";
+  img.style.display="none";
+
   setTimeout(()=>{
-    document.getElementById("scrollGif").style.display="none";
-    document.getElementById("scrollImg").style.display="block";
-  }, 1500); // adjust if your gif is longer
+    gif.style.display="none";
+    img.style.display="block";
+  },2000);
 }
 </script>
 
