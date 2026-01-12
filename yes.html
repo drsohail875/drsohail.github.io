@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<!-- Romantic Font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -27,7 +28,7 @@ body{
 
 /* TEXT */
 .message{
-  font-family:'Dancing Script', cursive;
+  font-family:'Great Vibes', cursive;
   font-size:32px;
   color:white;
   text-align:center;
@@ -36,14 +37,19 @@ body{
   transition:all 0.5s ease;
 }
 
-.shrink{
-  font-size:22px;
+.message.shrink{
+  font-size:24px;
 }
 
 /* GIF */
+.gif_container{
+  margin:8px 0;
+}
+
 .gif_container img{
-  width:220px;
-  margin:6px 0;
+  width:60vw;
+  max-width:220px;
+  transition:none;
 }
 
 /* HEART */
@@ -64,16 +70,16 @@ body{
   display:none;
   flex-direction:column;
   align-items:center;
-  margin-top:6px;
+  margin-top:-10px; /* Scroll closer */
 }
 
 #scrollGif{
-  width:260px;
+  width:300px;
 }
 
-#scrollBox{
+#scrollWrapper{
   position:relative;
-  width:260px;
+  width:300px;
 }
 
 #scrollImg{
@@ -81,14 +87,14 @@ body{
   display:none;
 }
 
-/* FORM ON SCROLL */
+/* FORM */
 form{
   display:none;
   position:absolute;
   top:85px;
   left:50%;
   transform:translateX(-50%);
-  width:180px;
+  width:210px;
 }
 
 form input, form textarea, form button{
@@ -110,10 +116,110 @@ form button{
   color:white;
   border:none;
 }
+
+/* CANDLE FLICKER */
+@keyframes flicker {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+#candle {
+  width: 30px;
+  height: 50px;
+  background-color: #FFB93A;
+  border-radius: 10px;
+  margin-top: -20px;
+  animation: flicker 1s infinite;
+  position: absolute;
+  top: -20px;
+}
+
+#seal {
+  width: 60px;
+  height: 60px;
+  background-image: url('seal.png'); /* Your wax seal image */
+  background-size: cover;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+
+/* PARALLAX EFFECT */
+body {
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('scroll_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  z-index: 1;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.parallax-scrolling {
+  transform: translateY(-30%);
+}
+
+/* CONFETTI EFFECT */
+@keyframes confetti {
+  0% { top: 100%; left: 10%; }
+  100% { top: 0%; left: 90%; }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff69b4;
+  animation: confetti 1s linear infinite;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 30px;
+  color: pink;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .message{font-size:30px}
+  .message.shrink{font-size:22px}
+}
+
+@media(min-width:768px){
+  #scrollGif{width:340px}
+  #scrollWrapper{width:340px}
+  form{width:240px}
+}
 </style>
 </head>
 
 <body>
+
+<!-- Parallax background -->
+<div class="parallax"></div>
+
+<!-- Candle and Seal -->
+<div id="candle"></div>
+<div id="seal"></div>
 
 <audio autoplay loop>
   <source src="Photographcut.mp3" type="audio/mp3">
@@ -121,39 +227,47 @@ form button{
 
 <div class="container">
 
-<div id="msg1" class="message">
-Oye Hoye!!! 🐣🥀
+  <!-- FIRST MESSAGE -->
+  <div id="msg1" class="message">
+Oye Hoye!!! 🐣🥀  
 🌟Batao fir kab jaana hai ✨
-</div>
-
-<div class="gif_container">
-  <img src="Celebrate.gif">
-</div>
-
-<div id="msg2" class="message">
-Mai waha bhi jakar tujhe maang loon...
-Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
-</div>
-
-<div id="heart" onclick="openScroll()">💌</div>
-
-<div id="scrollArea">
-  <img id="scrollGif" src="scroll_icon.gif">
-
-  <div id="scrollBox">
-    <img id="scrollImg" src="scroll.png">
-
-    <form action="https://formsubmit.co/xyz@gmail.com" method="POST">
-      <input type="date" name="date" required>
-      <input type="time" name="time" required>
-      <input type="text" name="place" placeholder="Place" required>
-      <textarea name="message" placeholder="Message"></textarea>
-
-      <button type="submit">Yes 💖</button>
-      <input type="hidden" name="_captcha" value="false">
-    </form>
   </div>
-</div>
+
+  <!-- GIF -->
+  <div class="gif_container">
+    <img src="Celebrate.gif">
+  </div>
+
+  <!-- SECOND MESSAGE -->
+  <div id="msg2" class="message">
+Mai waha bhi jakar tujhe maang loon...  
+Koi bata de mujhe qudrat ke faisle kaha hote hain 🥀❤️
+  </div>
+
+  <!-- HEART -->
+  <div id="heart" onclick="openScroll()">💌</div>
+
+  <!-- SCROLL -->
+  <div id="scrollArea">
+    <img id="scrollGif" src="scroll_icon.gif">
+
+    <div id="scrollWrapper">
+      <img id="scrollImg" src="scroll.png">
+
+      <form id="scrollForm"
+        action="https://formsubmit.co/xyz@gmail.com"
+        method="POST">
+
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <input type="text" name="place" placeholder="Place" required>
+        <textarea name="message" placeholder="Your message"></textarea>
+
+        <button type="submit">Yes 💖</button>
+        <input type="hidden" name="_captcha" value="false">
+      </form>
+    </div>
+  </div>
 
 </div>
 
@@ -162,11 +276,13 @@ function openScroll(){
   document.getElementById("msg1").classList.add("shrink");
   document.getElementById("msg2").classList.add("shrink");
 
+  const heart = document.getElementById("heart");
   const area = document.getElementById("scrollArea");
   const gif = document.getElementById("scrollGif");
   const img = document.getElementById("scrollImg");
   const form = document.querySelector("form");
 
+  heart.style.marginTop = "-8px";  // Heart moves up just below the GIF
   area.style.display="flex";
 
   gif.style.display="block";
