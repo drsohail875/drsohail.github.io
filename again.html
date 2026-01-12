@@ -1,53 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="./yes_style.css">
-
-<style>
-audio{display:none}
-
-.gifs{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin-bottom:25px;
-}
-
-.gifs img{
-  width:220px;
-  max-width:40vw;
-}
-</style>
+  <style>
+    audio { display:none; }
+    .big-btn{
+      font-size:26px;
+      padding:15px 40px;
+      margin-top:30px;
+    }
+  </style>
+  <link rel="stylesheet" href="./yes_style.css">
 </head>
 
 <body>
 
-<audio autoplay loop>
-  <source src="Maanjao.mp3" type="audio/mp3">
-</audio>
+  <audio autoplay loop>
+    <source src="Maanjao.mp3" type="audio/mp3">
+  </audio>
 
-<div class="container">
+  <div class="container">
 
-  <div class="gifs">
-    <img src="Crying.gif" alt="crying">
-    <img src="Melting.gif" alt="melting">
+    <div class="gif_container">
+      <img src="Crying.gif">
+    </div>
+
+    <div class="gif_container">
+      <img src="Melting.gif">
+    </div>
+
+    <h1 class="header_text">
+      Glaciers pighal rahe hain🧊  
+      Par tumhara dil❤️ nahi pighal raha🥺
+    </h1>
+
+    <div style="width:100%; text-align:center;">
+      <button class="btn big-btn" onclick="location.href='again.html'">
+        Try Again 💕
+      </button>
+    </div>
+
   </div>
-
-  <h1 class="header_text">
-    Glaciers pighal rahe hain 🧊<br>
-    Par tumhara dil ❤️ nahi pighal raha 🥺🥺
-  </h1>
-
-  <div style="text-align:center; margin-top:25px;">
-    <button class="btn big-btn" onclick="location.href='again.html'">
-      Try Again 💕
-    </button>
-  </div>
-
-</div>
 
 </body>
 </html>
