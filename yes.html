@@ -172,13 +172,10 @@ form button{
   100% { transform: translateY(0); }
 }
 
-/* FLOWERS SCATTERING */
+/* FLOWERS SCATTERING (Emojis) */
 .flower {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-size: contain;
-  background-repeat: no-repeat;
+  font-size: 40px;  /* Adjust emoji size */
   animation: flowerFloat 5s ease-in-out infinite;
 }
 
@@ -286,17 +283,18 @@ function createHeartsAndFlowers() {
   for (let i = 0; i < 16; i++) {
     let heart = document.createElement("div");
     heart.classList.add("floating-heart");
-    heart.innerHTML = "💖";
+    heart.innerHTML = "💖";  // Heart emoji
     heart.style.left = Math.random() * 100 + "%";
     heart.style.top = Math.random() * 100 + "%";
     document.body.appendChild(heart);
   }
 
-  // Create 10 flowers scattered randomly
+  // Create 10 flowers scattered randomly (using emoji)
+  const flowers = ["🍂", "🍁", "🌹", "🥀", "🌹", "🥀", "🥀", "🍂", "🌹", "🍁"];
   for (let i = 0; i < 10; i++) {
     let flower = document.createElement("div");
     flower.classList.add("flower");
-    flower.style.backgroundImage = "url('flower.png')"; // Replace with your flower image
+    flower.innerHTML = flowers[i];  // Flower emoji
     flower.style.left = Math.random() * 100 + "%";
     flower.style.top = Math.random() * 100 + "%";
     document.body.appendChild(flower);
