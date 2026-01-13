@@ -1,57 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oops 🥺</title>
-<link rel="stylesheet" href="./yes_style.css">
-<style>
-  audio { display:none; }
-  .big-btn { font-size:26px; padding:15px 40px; margin-top:30px; transition: transform 0.2s ease; }
-</style>
+  <style>
+    audio{display:none;}
+    .big-btn{
+      font-size:26px;
+      padding:15px 40px;
+      margin-top:30px;
+      transition: transform 0.2s ease;
+    }
+  </style>
+  <link rel="stylesheet" href="./yes_style.css">
 </head>
+
 <body>
 
-<audio loop id="bgm">
-  <source src="Maanjao.mp3" type="audio/mp3">
-</audio>
+  <audio autoplay loop>
+    <source src="Maanjao.mp3" type="audio/mp3">
+  </audio>
 
-<div class="container">
+  <div class="container">
 
-  <div class="gif_container">
-    <img src="Crying.gif">
+    <div class="gif_container">
+      <img src="Crying.gif">
+    </div>
+
+    <div class="gif_container">
+      <img src="Melting.gif">
+    </div>
+
+    <h1 class="header_text">
+      Glaciers pighal rahe hain🧊  
+      Par tumhara dil❤️ nahi pighal raha🥺
+    </h1>
+
+    <div style="width:100%; text-align:center;">
+      <button class="btn big-btn" id="tryAgainBtn">Try Again 💕</button>
+    </div>
+
   </div>
-
-  <div class="gif_container">
-    <img src="Melting.gif">
-  </div>
-
-  <h1 class="header_text">
-    Glaciers pighal rahe hain 🧊<br>
-    Par tumhara dil ❤️ nahi pighal raha 🥺
-  </h1>
-
-  <div style="width:100%; text-align:center;">
-    <button class="btn big-btn" onclick="tryAgain()">Try Again 💕</button>
-  </div>
-
-</div>
 
 <script>
-document.body.addEventListener("click",()=>{
-  document.getElementById("bgm").play();
-},{once:true});
+let attempt = parseInt(localStorage.getItem("attempt") || "1");
 
-// Keep Yes button size from previous session
-let yesSize = parseFloat(localStorage.getItem("yesSize") || "1");
+// Reset Yes button size on new page load
+localStorage.setItem("yesSize", "1");
 
-function tryAgain() {
-  // Increment attempt
-  let attempt = parseInt(localStorage.getItem("attempt") || "1");
+document.getElementById("tryAgainBtn").addEventListener("click", function(){
+  // Increment attempt count for No button logic
   localStorage.setItem("attempt", attempt + 1);
-
   window.location.href = "again.html";
-}
+});
 </script>
 
 </body>
