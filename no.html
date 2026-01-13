@@ -1,53 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    audio{display:none;}
-    .big-btn{
-      font-size:26px;
-      padding:15px 40px;
-      margin-top:30px;
-      transition: transform 0.2s ease;
-    }
-  </style>
-  <link rel="stylesheet" href="./yes_style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Response 🥺</title>
+
+<link rel="stylesheet" href="./yes_style.css">
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(207,159,255);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header_text {
+    font-size: clamp(26px, 4.8vw, 52px);
+    font-weight: 700;
+    color: #fff;
+    margin: 14px 0;
+  }
+
+  .gif_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 18px 0;
+  }
+
+  img {
+    max-width: 92vw;
+    max-height: 52vh;
+    height: auto;
+    border-radius: 18px;
+  }
+
+  .btn {
+    background-color: #fff;
+    color: rgb(233,48,48);
+    padding: 14px 36px;
+    font-size: clamp(16px, 2.8vw, 20px);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .buttons {
+    margin-top: 24px;
+  }
+</style>
 </head>
 
 <body>
 
-  <audio autoplay loop>
-    <source src="Maanjao.mp3" type="audio/mp3">
-  </audio>
+<div class="container">
 
-  <div class="container">
-
-    <div class="gif_container">
-      <img src="Crying.gif">
-    </div>
-
-    <div class="gif_container">
-      <img src="Melting.gif">
-    </div>
-
-    <h1 class="header_text">
-      Glaciers pighal rahe hain🧊  
-      Par tumhara dil❤️ nahi pighal raha🥺
-    </h1>
-
-    <div style="width:100%; text-align:center;">
-      <button class="btn big-btn" id="tryAgainBtn">Try Again 💕</button>
-    </div>
-
+  <div class="gif_container">
+    <img src="Crying.gif">
   </div>
+
+  <div class="gif_container">
+    <img src="Melting.gif">
+  </div>
+
+  <h1 class="header_text">
+    Glaciers pighal rahe hain🧊  
+    Par tumhara dil❤️ nahi pighal raha🥺
+  </h1>
+
+  <div class="buttons">
+    <button class="btn" id="tryAgainBtn">Try Again 💕</button>
+  </div>
+
+</div>
 
 <script>
 let attempt = parseInt(localStorage.getItem("attempt") || "1");
 
-// Reset Yes button size on new page load
+// Reset Yes button size (for next page)
 localStorage.setItem("yesSize", "1");
 
 document.getElementById("tryAgainBtn").addEventListener("click", function(){
-  // Increment attempt count for No button logic
+  // Increment attempt count for No button logic in again.html
   localStorage.setItem("attempt", attempt + 1);
   window.location.href = "again.html";
 });
