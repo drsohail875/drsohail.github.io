@@ -1,40 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="./styles.css">
-  <style>
-    video {
-      width: 85%;
-      border-radius: 20px;
-    }
-    .buttons {
-      margin-top: 25px;
-      justify-content: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try Again ❤️</title>
+<link rel="stylesheet" href="./styles.css">
+<style>
+  video, img { max-width: 85%; border-radius: 20px; }
+  .buttons { margin-top: 25px; justify-content: center; display:flex; gap:20px; position:relative; }
+  .btn { transition: transform 0.2s ease, font-size 0.2s ease; }
+</style>
 </head>
-
 <body>
 
 <div class="container">
 
   <div class="gif_container">
-    <video autoplay loop>
+    <video autoplay loop muted playsinline>
       <source src="Dil.mp4" type="video/mp4">
     </video>
   </div>
 
   <h1 class="header_text">
     Mar to jana hi hai ek din,<br>
-    Tum mil jao to thoda jee lenge💘
+    Tum mil jao to thoda jee lenge 💘
   </h1>
 
   <div class="buttons">
-    <button class="btn" onclick="location.href='yes.html'">Yes</button>
-    <button class="btn" onclick="location.href='no.html'">No</button>
+    <button class="btn" id="yesButton" onclick="yesTapped()">Yes</button>
+    <button class="btn" id="noButton" onmouseover="noHover()" onclick="noHover()">No</button>
   </div>
 
 </div>
+
+<script>
+let noCount = 0;
+
+// Load persisted values
+let attempt = parseInt(localStorage.getItem("attempt") || "1");
+let yesSize = parseFloat(localStorage.getItem("yesSize") || "1");
+
+// Apply persisted Yes button size
+document.getElementById("yesButton").style.transform = `scale(${yesSize})`;
+
+function yesTapped() {
+  // Increase Yes button size slightly
+  yesSize += 0.1;
+  document.getElementById("yesButton").style.transform = `scale(${yesSize})`;
+  localStorage.setItem("yesSize", yesSize);
+  window.location.href = "yes.html";
+}
+
+function noHover() {
+  let requiredHovers = attempt > 1 ? 4 : 1;
+  noCount++;
+
+  if(noCount >= requiredHovers){
+    // Increment attempt for next retry
+    localStorage.setItem("attempt", attempt + 1);
+    window.location.href = "no.html";
+  } else {
+    // Move No button randomly inside container
+    const btn = document.getElementById("noButton");
+    const container = document.querySelector(".container");
+    const maxX = container.offsetWidth - btn.offsetWidth;
+    const maxY = container.offsetHeight - btn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    btn.style.position = "absolute";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+  }
+}
+</script>
 
 </body>
 </html>
