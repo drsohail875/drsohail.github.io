@@ -4,11 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Try Again ❤️</title>
+
+<!-- Use same styles as main.html for perfect responsiveness -->
 <link rel="stylesheet" href="./styles.css">
+
 <style>
-  video, img { max-width: 85%; border-radius: 20px; }
-  .buttons { margin-top: 25px; justify-content: center; display:flex; gap:20px; }
-  .btn { transition: transform 0.2s ease; }
+/* Video/Image container like main.html */
+.gif_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 18px 0;
+}
+
+video {
+  width: 85%;
+  max-width: 92vw;
+  max-height: 52vh;
+  height: auto;
+  border-radius: 18px;
+}
+
+.buttons {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  background-color: #fff;
+  color: rgb(233,48,48);
+  padding: 14px 36px;
+  font-size: clamp(16px, 2.8vw, 20px);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Remove hover for buttons */
+.btn:hover {
+  transform: none;
+}
+
+/* Ensure Yes/No positions reset each load */
+#yesButton, #noButton {
+  position: relative;
+}
 </style>
 </head>
 <body>
@@ -37,31 +82,30 @@
 let yesButton = document.getElementById("yesButton");
 let noButton = document.getElementById("noButton");
 
-// Reset Yes button size on new page load
+// Reset Yes button scale on page load
 let yesSize = 1;
 yesButton.style.transform = `scale(${yesSize})`;
 
-// Load attempt for No button logic
+// Get attempt count from localStorage (incremented by no.html)
 let attempt = parseInt(localStorage.getItem("attempt") || "1");
 
-// No button click count for this page load
+// Track number of clicks on No button for this page load
 let noClickCount = 0;
 
 yesButton.addEventListener("click", function(){
-  yesSize += 0.1;
+  yesSize += 0.1; // increase size
   yesButton.style.transform = `scale(${yesSize})`;
   window.location.href = "yes.html";
 });
 
 noButton.addEventListener("click", function(){
-  // First try: 1 click, later tries: 4 clicks required
-  let requiredClicks = attempt > 1 ? 4 : 1;
+  let requiredClicks = attempt > 1 ? 4 : 1; // 4 clicks after first try
   noClickCount++;
-  
+
   if(noClickCount >= requiredClicks){
     window.location.href = "no.html";
   } else {
-    // Optional: small feedback for user
+    // Slight visual feedback
     noButton.style.transform = `scale(1.05)`;
     setTimeout(()=>{ noButton.style.transform = `scale(1)`; }, 150);
   }
