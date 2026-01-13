@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="./styles.css">
 <style>
   video, img { max-width: 85%; border-radius: 20px; }
-  .buttons { margin-top: 25px; justify-content: center; display:flex; gap:20px; position:relative; }
-  .btn { transition: transform 0.2s ease, font-size 0.2s ease; }
+  .buttons { margin-top: 25px; justify-content: center; display:flex; gap:20px; }
+  .btn { transition: transform 0.2s ease; }
 </style>
 </head>
 <body>
@@ -23,57 +23,49 @@
 
   <h1 class="header_text">
     Mar to jana hi hai ek din,<br>
-    Tum mil jao to thoda jee lenge 💘
+    Tum mil jao to thoda jee lenge💘
   </h1>
 
   <div class="buttons">
-    <button class="btn" id="yesButton" onclick="yesTapped()">Yes</button>
-    <button class="btn" id="noButton" onmouseover="noHover()" onclick="noHover()">No</button>
+    <button class="btn" id="yesButton">Yes</button>
+    <button class="btn" id="noButton">No</button>
   </div>
 
 </div>
 
 <script>
-let noCount = 0;
+let yesButton = document.getElementById("yesButton");
+let noButton = document.getElementById("noButton");
 
-// Load persisted values
+// Reset Yes button size on new page load
+let yesSize = 1;
+yesButton.style.transform = `scale(${yesSize})`;
+
+// Load attempt for No button logic
 let attempt = parseInt(localStorage.getItem("attempt") || "1");
-let yesSize = parseFloat(localStorage.getItem("yesSize") || "1");
 
-// Apply persisted Yes button size
-document.getElementById("yesButton").style.transform = `scale(${yesSize})`;
+// No button click count for this page load
+let noClickCount = 0;
 
-function yesTapped() {
-  // Increase Yes button size slightly
+yesButton.addEventListener("click", function(){
   yesSize += 0.1;
-  document.getElementById("yesButton").style.transform = `scale(${yesSize})`;
-  localStorage.setItem("yesSize", yesSize);
+  yesButton.style.transform = `scale(${yesSize})`;
   window.location.href = "yes.html";
-}
+});
 
-function noHover() {
-  let requiredHovers = attempt > 1 ? 4 : 1;
-  noCount++;
-
-  if(noCount >= requiredHovers){
-    // Increment attempt for next retry
-    localStorage.setItem("attempt", attempt + 1);
+noButton.addEventListener("click", function(){
+  // First try: 1 click, later tries: 4 clicks required
+  let requiredClicks = attempt > 1 ? 4 : 1;
+  noClickCount++;
+  
+  if(noClickCount >= requiredClicks){
     window.location.href = "no.html";
   } else {
-    // Move No button randomly inside container
-    const btn = document.getElementById("noButton");
-    const container = document.querySelector(".container");
-    const maxX = container.offsetWidth - btn.offsetWidth;
-    const maxY = container.offsetHeight - btn.offsetHeight;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    btn.style.position = "absolute";
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
+    // Optional: small feedback for user
+    noButton.style.transform = `scale(1.05)`;
+    setTimeout(()=>{ noButton.style.transform = `scale(1)`; }, 150);
   }
-}
+});
 </script>
 
 </body>
