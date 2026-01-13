@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="./styles.css">
-  <style>
-    video {
-      width: 85%;
-      border-radius: 20px;
-    }
-    .buttons {
-      margin-top: 25px;
-      justify-content: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Again ❤️</title>
+<link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
@@ -19,7 +12,7 @@
 <div class="container">
 
   <div class="gif_container">
-    <video autoplay loop>
+    <video autoplay loop muted playsinline>
       <source src="Dil.mp4" type="video/mp4">
     </video>
   </div>
@@ -30,11 +23,33 @@
   </h1>
 
   <div class="buttons">
-    <button class="btn" onclick="location.href='yes.html'">Yes</button>
-    <button class="btn" onclick="location.href='no.html'">No</button>
+    <button class="btn" id="yesButton">Yes</button>
+    <button class="btn" id="noButton">No</button>
   </div>
 
 </div>
+
+<script>
+let yesButton = document.getElementById("yesButton");
+let noButton = document.getElementById("noButton");
+
+let noClickCount = 0;        // Counts No button taps
+let yesScale = 1;            // Yes button size
+
+yesButton.addEventListener("click", function(){
+  window.location.href = "yes.html"; // Original Yes behavior
+});
+
+noButton.addEventListener("click", function(){
+  noClickCount++;
+  yesScale += 0.1;                // Increase Yes button size each tap
+  yesButton.style.transform = `scale(${yesScale})`;
+
+  if(noClickCount >= 4){          // 4 taps required
+    window.location.href = "no.html"; // Go back to Try Again page
+  }
+});
+</script>
 
 </body>
 </html>
