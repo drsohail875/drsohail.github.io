@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    audio { display:none; }
-    .big-btn{
-      font-size:26px;
-      padding:15px 40px;
-      margin-top:30px;
-    }
-  </style>
-  <link rel="stylesheet" href="./yes_style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oops 🥺</title>
+<link rel="stylesheet" href="./yes_style.css">
+<style>
+  audio { display:none; }
+  .big-btn { font-size:26px; padding:15px 40px; margin-top:30px; transition: transform 0.2s ease; }
+</style>
 </head>
-
 <body>
 
-  <audio autoplay loop>
-    <source src="Maanjao.mp3" type="audio/mp3">
-  </audio>
+<audio loop id="bgm">
+  <source src="Maanjao.mp3" type="audio/mp3">
+</audio>
 
-  <div class="container">
+<div class="container">
 
-    <div class="gif_container">
-      <img src="Crying.gif">
-    </div>
-
-    <div class="gif_container">
-      <img src="Melting.gif">
-    </div>
-
-    <h1 class="header_text">
-      Glaciers pighal rahe hain🧊  
-      Par tumhara dil❤️ nahi pighal raha🥺
-    </h1>
-
-    <div style="width:100%; text-align:center;">
-      <button class="btn big-btn" onclick="location.href='again.html'">
-        Try Again 💕
-      </button>
-    </div>
-
+  <div class="gif_container">
+    <img src="Crying.gif">
   </div>
+
+  <div class="gif_container">
+    <img src="Melting.gif">
+  </div>
+
+  <h1 class="header_text">
+    Glaciers pighal rahe hain 🧊<br>
+    Par tumhara dil ❤️ nahi pighal raha 🥺
+  </h1>
+
+  <div style="width:100%; text-align:center;">
+    <button class="btn big-btn" onclick="tryAgain()">Try Again 💕</button>
+  </div>
+
+</div>
+
+<script>
+document.body.addEventListener("click",()=>{
+  document.getElementById("bgm").play();
+},{once:true});
+
+// Keep Yes button size from previous session
+let yesSize = parseFloat(localStorage.getItem("yesSize") || "1");
+
+function tryAgain() {
+  // Increment attempt
+  let attempt = parseInt(localStorage.getItem("attempt") || "1");
+  localStorage.setItem("attempt", attempt + 1);
+
+  window.location.href = "again.html";
+}
+</script>
 
 </body>
 </html>
